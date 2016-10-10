@@ -1,32 +1,25 @@
+Implementar el motor de llamadas Async para los handlers (No utilizar futuros. El objetivo es tener los procesos abiertos en función del número de cores. Quizá se podrían ejecutar como actores)
+Refactorizar Request, Response y session. Crear interfaces y/o clases abstractas si es necesario
 Pensar e implementar el LOG (peticiones HTTP y otro de detalle)
 Pasar la opciones el server en el arranque
-Sin prioridad: procesar las peticiones del server en background (complicado a ver que tal com futuros)
 Comprobar la memoria y hacer fine-tunning
 Comprobar el uso de CPU y hace fine tunning
 Comprobar el tema del pipelining de peticiones
 comenzar a meter tests
-Posiblemente los Request/Response del server y de ring tienen que ser distintos
 Sin prioridad: Hacer que el server acepte requests en pipeline
 El servidor debe tener la responsabilidad de codificar el response para mandar por el canuto
 Comprobar la integridad de las cabeceras Http request/response
 Poner comentarios explicativos de codigoo
 En request/response quitar la variable raw y sus getters/setters
-Desacoplar la lógica de procesado de datos de los objetos request/response
 Revisar le tratamiento de exepciones
 Revisar el tratamiento de los nulos
 Limitar el tamano del header recibido, para evitar ataques
-Ausmimos que la cabecera nunca va a llegar en dos reads distintos -> si la cabecera no está completa devolveremos un error
-Cerrar sesiones cuando pase un tiempo prudencial
+Cerrar sesiones cuando pase un tiempo prudencial (anadir parametro en la inicialización del httpserver)
 Implementar el encoding del server
-Cambiar el nombre del server por TinyHttpServer o algo así. Quizá algo más personal 
 Hacer todos los checks de integridad para la cabecera request/response
-Convertir los pasos Http en funciones y encadenarlas con andThen (estaría chulos conseguir aalgo así)
-ordenar/organizar los campos del RingRequest
-Validar la corrección de los parámetros. Por ejemplo en la sesión
 Asegurar que las conexiones se cierran cuando las cierra el cliente
 Al realizar pipelining solucionar el problema cuando la petición se recibe en varias lecturas (posiblmente se culpa de mi cliente pero si se soluciona ahorramos problemas)
 Anadir el concepto de connector (conector Http, Conector Http2, Custom ...). Quizá implementando un patrón visitante (ver los filters de finagle)
 Hacer documentacion (sudo sysctl -w kern.ipc.somaxconn=2048, ampliar ficheros permitods, ampliar procesos)
-Ver como configurar el recolector de basura cada x tiempo y poner el recolector optimo
 Libreria de try-cacth al estilo de optionals
 
