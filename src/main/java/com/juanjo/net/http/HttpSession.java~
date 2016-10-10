@@ -1,0 +1,72 @@
+package com.juanjo.net.http;
+
+import java.util.UUID;
+import java.util.ArrayList;
+import java.util.Queue;
+import java.util.ArrayDeque;
+import java.nio.ByteBuffer;
+
+public final class HttpSession
+{
+  private HttpTransaction current;
+  private final Queue<HttpTransaction> transactions;
+
+  public HttpSession(UUID sessionId)
+  {
+    transactions = new ArrayDeque<>();
+  }
+
+  public final void processData(ByteBuffer data)
+  {
+    HttpRequestTokenizer t = new HttpRequestTokenizer(data);
+
+    while(t.hasNext()) {
+      Token t = t.next();
+      if(t.isError()) {
+      
+      }
+      if(t.isHeader()) {
+        //Falta comproobar si el current request actual es completo y meterlo en la lista de transactions
+        current = new HttpTransaction()
+          .setRequest(new Request())
+          .setResponse(new Response());
+
+        //Falta lanzar el evento para avisar que hay un nuevo request
+      }
+      if(t.isData()) {
+        //Lanzar evento 
+      }
+      if(t.isEnd()) {
+        //Lanzar evento
+      }
+    }
+    
+  }
+
+  public final class HttpTransaction
+  {
+    private Request request;
+    private Response response;
+
+    public Request getRequest() 
+    {
+      return request;
+    }
+    public HttpTransaction setRequest(Request value)
+    {
+      this.request = value;
+      return this;
+    }
+
+    public Response getResponse()
+    {
+      return response;
+    }
+
+    public HttpTransaction setResponse(Response value)
+    {
+      this.response = value;
+      return this;
+    }
+  }
+}

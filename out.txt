@@ -1,0 +1,19 @@
+Accepted connection
+Tokens length 5
+HeaderRaw HEAD / HTTP/1.1
+Host: localhost:1113
+User-Agent: curl/7.43.0
+Accept: */*
+
+
+Host: localhost:1113
+User-Agent: curl/7.43.0
+Accept: */*
+
+method = HEAD
+request-uri = /
+request-line = HEAD / HTTP/1.1
+http-version = HTTP/1.1
+user-agent = curl/7.43.0
+accept = */*
+contentLength -1 contentReceived 0
