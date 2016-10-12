@@ -5,18 +5,21 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 import java.util.UUID;
 import java.io.ByteArrayOutputStream;
+import java.util.concurrent.ExecutorService;
 
-public class Response
+public class Response implements AsyncHandler
 {
   private ResponseHeader header = new ResponseHeader();
   private ByteArrayOutputStream bodyStream = new ByteArrayOutputStream();
   private final UUID session;
+  private final ExecutorService service;
 
   private Consumer<Void> on_end;
 
-  public Response(final UUID session)
+  public Response(final UUID session, ExecutorService service)
   {
     this.session = session;
+    this.service = service;
   }
 
   public UUID getSession()

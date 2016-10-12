@@ -2,9 +2,11 @@ com/juanjo/net/http/nio/tcpserver/TcpServer.class
 com/juanjo/net/http/ResponseHeader.class
 com/juanjo/net/http/nio/tcpserver/Event.class
 com/juanjo/net/http/nio/tcpserver/CloseConnectionCommand.class
+com/juanjo/net/http/HttpServer$ServicePool.class
 com/juanjo/net/http/Response.class
 com/juanjo/net/http/HttpServer.class
 com/juanjo/net/http/nio/tcpserver/ICommand.class
+com/juanjo/net/http/AsyncHandler.class
 com/juanjo/net/http/HttpSession$HttpTransaction.class
 com/juanjo/net/http/HttpUtils.class
 com/juanjo/net/http/nio/tcpserver/SendCommand.class

@@ -52,12 +52,10 @@ public class TcpServer extends Thread
     }
     if(cmd.getClass().equals(CloseConnectionCommand.class))
     {
-      System.out.println("CloseConnectionCommand received");
       CloseConnectionCommand c = (CloseConnectionCommand) cmd;
       return this.deleteSession(UUID2Socket.get(c.getConnection()));
     }
      return true;
-    //return this.provisionalInEvent(evt);
   }
   public void run() 
   {
@@ -229,6 +227,7 @@ public class TcpServer extends Thread
     }
 
   }
+
   private boolean queueDataToSend(UUID connection, ByteBuffer data)
   {
     boolean ret = true;

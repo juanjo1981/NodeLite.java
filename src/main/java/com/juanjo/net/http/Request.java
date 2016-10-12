@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 import java.util.UUID;
 import java.io.ByteArrayOutputStream;
+import java.util.concurrent.ExecutorService;
 
-public class Request
+public class Request implements AsyncHandler
 {
   private RequestHeader header;
   private ByteArrayOutputStream bodyStream = new ByteArrayOutputStream();
@@ -15,10 +16,12 @@ public class Request
   private Consumer<byte []> on_data;
   private Consumer<byte []> on_end;
   private final UUID session;
-  
-  public Request(final UUID session)
+  private final ExecutorService service;
+
+  public Request(final UUID session, ExecutorService service)
   {
     this.session = session;
+    this.service = service;
   }
 
   public UUID getSession()
@@ -50,12 +53,12 @@ public class Request
   
   public void onData(Consumer<byte []> consumer)
   {
-    this.on_data = consumer;
+    this.on_data = makeAsync(consumer, service);
   }
 
   public void onEnd(Consumer<byte []> consumer)
   {
-    this.on_end = consumer;
+    this.on_end = makeAsync(consumer, service);
   }
 
   public void appendBody(byte[] data)
